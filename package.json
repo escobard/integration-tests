@@ -1,0 +1,45 @@
+{
+  "name": "graphql-integration-tests",
+  "version": "0.0.1",
+  "description": "A graphql integration test framework with supertest and jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/escobard/graphql-integration-tests.git"
+  },
+  "keywords": [
+    "graphql",
+    "supertest",
+    "jest"
+  ],
+  "author": "Daniel Escobar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/escobard/graphql-integration-tests/issues"
+  },
+  "homepage": "https://github.com/escobard/graphql-integration-tests#readme",
+  "dependencies": {
+    "jest": "^27.0.6",
+    "supertest": "^6.1.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  }
+}
