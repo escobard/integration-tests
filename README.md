@@ -1,3 +1,1 @@
 # graphql-integration-tests
-
-asdfads
