@@ -4,7 +4,8 @@
   "description": "A graphql integration test framework with supertest and jest",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "jest",
+    "test-watch": "jest -o"
   },
   "repository": {
     "type": "git",
