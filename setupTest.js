@@ -1,6 +1,8 @@
-const request = require('supertest');
+const supertest = require('supertest');
 
-global.request = request;
+const { endpoint } = require("./constants")
+
+global.request = supertest(endpoint);
 
 afterEach(() => {
     jest.clearAllMocks()
