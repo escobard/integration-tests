@@ -1,5 +1,5 @@
 describe("createProduct mutation", () => {
-    it("can create a user and return data", async () => {
+    it("can create a user and returns the new user's data", async () => {
 
         const newProduct = {
             id: "some-product",
@@ -9,7 +9,7 @@ describe("createProduct mutation", () => {
         };
 
         const mutation = {
-            mutation: `
+            query: `
             mutation createProduct($product: ProductInput){
               createProduct(product: $product){
                 id
@@ -27,5 +27,6 @@ describe("createProduct mutation", () => {
         const { body, status } = await request.post('/graphql').send(mutation);
 
         expect(body.data.createProduct).toEqual(newProduct);
+        expect(status).toEqual(200);
     });
 });

@@ -1,1 +1,5 @@
-export const endpoint = `http://localhost:3999`;
+const endpoint = `http://localhost:3999`;
+
+module.exports = {
+    endpoint
+}
