@@ -1,5 +1,5 @@
 describe("createProduct mutation", () => {
-    it("can create a user and returns the new user's data", async () => {
+    it("can create a user", async () => {
 
         const newProduct = {
             id: "some-product",
