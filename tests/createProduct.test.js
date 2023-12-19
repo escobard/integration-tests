@@ -25,8 +25,8 @@ describe("createProduct mutation", () => {
         };
 
         const { body, status } = await request.post('/graphql').send(mutation);
-
         expect(body.data.createProduct).toEqual(newProduct);
         expect(status).toEqual(200);
     });
+
 });
