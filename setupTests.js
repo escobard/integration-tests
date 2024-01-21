@@ -1,9 +1,14 @@
-const supertest = require('supertest');
+import supertest from "supertest";
 
-const { endpoint } = require("./constants")
+beforeAll(async () => {
+  global.request = supertest;
 
-global.request = supertest(endpoint);
+});
+
+beforeEach(() => {
+  global.server = process.env.API || 'http://localhost:4000';
+});
 
 afterEach(() => {
-    jest.clearAllMocks()
-})
+  global.server = null;
+});

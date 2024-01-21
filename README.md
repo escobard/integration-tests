@@ -1,3 +1,0 @@
-# graphql-integration-tests
-
-A 
