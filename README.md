@@ -2,11 +2,11 @@
 
 An integration test boilerplate, designed as a starting point for your tests, built with JavaScript ES6+, Jest and Supertest.
 
-Create and run a new test by:
+Create and run a new test in a few steps:
 
 #### 1. Create test
 
-#### 2. Start API and database
+#### 2. Apply the URL of the API you want to test
 
 #### 3. Run the tests
 
@@ -40,15 +40,19 @@ The following npm scripts are available:
 
 `npm run test nameOfTestFile`
 
+### Run all available tests
+
+`npm run test`
+
 ### Run all available tests in order
 
 Tests will run in the order outlined in the [/tests/testInOrder.test.js](/tests/testInOrder.test.js) file.
 
 `npm start`
 
-### Run tests in watch mode
+### Run tests in watch mode - recommended for development
 
-Re-reruns all available tests with every file update. It is recommended to use watch mode when developing tests. Find out more at [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
+Re-reruns tests when a test file is updated. It is recommended to use watch mode when developing tests. Find out more at [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
 
 ### Run tests in a Docker container
 
@@ -59,111 +63,18 @@ Re-reruns all available tests with every file update. It is recommended to use w
 
 ## Core concepts
 
-As a portfolio piece, this project aims to showcase expertise in several areas, including:
-
-1. [Container orchestration for scale](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-2. [Automated test pyramid](https://github.com/escobard/cloud-apps?tab=readme-ov-file#automated-test-pyramid)
-3. [Blueprint for automated tests with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#blueprint-for-automated-tests-with-circleci)
-4. [Full stack system built with JavaScript](https://github.com/escobard/cloud-apps?tab=readme-ov-file#full-stack-system-built-with-javascript)
-5. [Starting point for more complicated use cases](https://github.com/escobard/cloud-apps?tab=readme-ov-file#starting-point-for-more-complicated-use-cases)
-
-### Container orchestration for scale
-
-Leveraging the power of Containers, the system and its applications can be deployed as-is to any cloud provider that supports Docker. It is encouraged to leverage the provided Docker Compose files, which simulate how the system & its applications run independently and together to facilitate multi-environment hosting, deployment and automation.
-
-#### System overview
-
-Docker Compose is used to simulate the system in different environments, creating a clone on your computer of how the system and its applications would run on a cloud. Leveraging Docker Compose, it is easier to troubleshoot multi-application systems outside of the cloud, while serving as a foundation for the cloud network that must be in place for the system to work on the cloud.
-
-The diagram below outlines the network created by Docker Compose for development and release environments, including application connections, ports, routes and tools:
-
-![System overview](docs/diagrams/system_overview.png)
-
-#### Integration tests
-
-Using Docker Compose, a network can be spun up to simulate system and applications required to run integration (or service) tests. Unlike development, release and e2e test environments, the integration tests environment only contains a _partial system orchestration_, as only the API and Database are required.
-
-The diagram below outlines the network created by Docker Compose for the integration tests environment, including application connections, ports, routes and tools:
-
-![Integration tests](docs/diagrams/integration_tests.png)
-
-#### End to end tests
-
-A Docker Compose network is provided, simulating the system and applications that are needed to run e2e (or UI) tests. The e2e tests environment has the most complex container orchestration out of all other provided environments, as it requires an application to run the tests (nightwatch), a hub to spin up browsers (selenium hub) and a browser (node-chrome).
-
-The diagram below outlines the full network required for the e2e tests environment, including application connections, ports, routes and tools:
-
-![End to end tests](docs/diagrams/e2e_tests.png)
-
-### Automated test pyramid
-
-Following Mike Cohn's [test pyramid](https://martinfowler.com/articles/practical-test-pyramid/testPyramid.png) approach to automated testing, the system contains a "well-rounded" test portfolio, which aims to cover all critical areas of the system with automated tests.
-
-![Mike Cohn's test pyramid](docs/images/test_pyramid.png)
-
-The test pyramid paradigm encourages developers to build more unit tests (since they are small and fast), than service (or integration) tests, and more service tests than UI (or e2e) tests (which are slow and heavy).
-
-Staying true to the test pyramid paradigm, the system provides over 95% unit test coverage, but only critical features are covered by integration and e2e tests. The goal is to provide a starting point for developers to extend tests as required.
-
-#### UI unit tests
-
-![UI unit tests](docs/images/ui_unit_tests.png)
-
-#### API unit tests
-
-![API unit tests](docs/images/api_unit_tests.png)
-
-#### Integration tests
-
-![Integration tests](docs/images/integration_test_results.png)
-
-#### End to end tests
-
-![End to end tests](docs/images/e2e_test_results.png)
-
-### Blueprint for automated tests with CircleCI
-
-Leveraging CircleCI, unit tests for each application (except for the database) are run on every new commit to Github. Once unit tests have passed, integration tests are run, validating API and Database changes. After integration tests pass, e2e tests are run, validating that the UI, API and Database work together as expected with the new changes.
-
-Following the [fail-fast](https://testsigma.com/blog/test-automation-achieve-fail-fast-fail-often/) automated testing approach, the system provides a starting point (or blueprint / boilerplate) as-is for more complex automated testing requirements.
-
-![CircleCI automated tests](docs/images/circleci_automated_tests.png)
-
-### Full stack system built with JavaScript
-
-Each application in the system uses JavaScript, with the exception of the PostgreSQL database. Leveraging (mostly) a single programming language for all applications of the system has numerous advantages, including:
-
-- **Cross-functional engineering** - seamlessly switch between application and test code, because all code looks alike!
-- **Common design patterns** - consistent design patterns and coding styles between applications facilitates readability, maintenance and extendability
-- **Easier to staff and scale** - hiring and training engineers on for a single programming language is easier than (the more common) multi-language software stacks
-- **Large community** - all tools, libraries and frameworks used in the system have large open source communities
-
-### Starting point for more complicated use cases
-
-The system and its applications can be re-used as a starting point (or blueprint / boilerplate) for more complex systems and applications. Each application provides common design patterns that can be leveraged to facilitate development of new features. All applications are containerized with Docker, ready to be deployed as-is to any cloud provider with Docker support.
-
-## Application docs
-
-[UI](https://github.com/escobard/cloud-apps/blob/master/client/ui)  
-[API](https://github.com/escobard/cloud-apps/blob/master/server/api)  
-[Database](https://github.com/escobard/cloud-apps/tree/master/server/postgres)  
-[Integration tests](https://github.com/escobard/cloud-apps/tree/master/server/tests)  
-[End to end tests](https://github.com/escobard/cloud-apps/tree/master/client/tests)
+1. Serve as a starting point for complex integration test use cases
+2. Provide simple, modular code structures & design patterns
+3. Leverage data driven tests with Jest
+4. Follow the automation test pyramid principles
+5. Run tests in a Docker container for CI/CD
 
 ## Tools and frameworks
 
-[Node.js](https://nodejs.org/en)  
-[Docker](https://www.docker.com/)     
-[Docker Compose](https://docs.docker.com/compose/)  
-[CircleCI](https://circleci.com)  
-[React](https://react.dev/)  
-[Express.js](https://expressjs.com/)  
-[Swagger](https://swagger.io/)  
-[PostgreSQL](https://www.postgresql.org/)  
+[Node.js](https://nodejs.org/en)
 [Jest](https://jestjs.io/)  
 [Supertest](https://www.npmjs.com/package/supertest)    
-[Nightwatch](https://nightwatchjs.org/)      
-[Selenium](https://www.selenium.dev/)
+[Docker](https://www.docker.com/)
 
 ## How to contribute
 
