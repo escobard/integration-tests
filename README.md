@@ -1,8 +1,8 @@
-# cloud-apps &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/cloud-apps.svg?style=shield&circle-token=9a2ace13d3d938798ecb8f2efc56176ea7ede1ca)](https://app.circleci.com/pipelines/github/escobard/cloud-apps) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps#pull-requests)
+# integration-tests &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps#pull-requests)
 
-An integration test boilerplate, build with JavaScript ES6+, designed as a starting point for the integration tests of your system. 
+An integration test boilerplate, designed as a starting point for your tests, built with JavaScript ES6+, Jest and Supertest.
 
-A new test can be run and created in a few simple steps:
+Create and run a new test by:
 
 #### 1. Create test
 
@@ -10,11 +10,11 @@ A new test can be run and created in a few simple steps:
 
 #### 3. Run the tests
 
-The diagram below outlines a network created with Docker Compose to showcase a system with an api, database and integration tests working together:
+The diagram below outlines a network created with Docker Compose, showcasing the connections between the tests, an API and a Database:
 
 TODO - add docker network diagram
 
-A working version of the integration tests can be found in [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), where the tests run in combination with a GraphQL API and PostgreSQL database.
+Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), you will find an example of the integration tests running in combination with a GraphQL API and PostgreSQL Database.
 
 ![System overview](docs/diagrams/system_overview.png)
 
@@ -28,43 +28,36 @@ A working version of the integration tests can be found in [the aws-cloud-apps r
 
 ## Quickstart
 
-### Recommended - Run environments with Docker Compose
+### Run test application with NPM
 
-[Docker](https://www.docker.com/) must be installed.
+[Node.js v20.9.0+](https://nodejs.org/en/) must be installed.
 
-#### Development
-`docker-compose -f dev.yaml up`
+Tests for any RESTFul API can be built following the steps provided in [the summary of this README.](#graphql-integration-tests).
 
-#### Release
-`docker-compose -f release.yaml up`
+The following npm scripts are available:
 
-#### Integration tests
-`docker-compose -f integration-tests.yaml up --exit-code-from integration`
+### Run a single test
 
-#### End to end tests
-`docker-compose -f e2e-tests.yaml up --no-attach node-chrome --exit-code-from e2e`
+`npm run test nameOfTestFile`
 
-### Run environments with NPM and Docker Compose
+### Run all available tests in order
 
-[Node.js v14.19.0](https://nodejs.org/en/) and [Docker](https://www.docker.com/) must be installed.
+Tests will run in the order outlined in the [/tests/testInOrder.test.js](/tests/testInOrder.test.js) file.
 
-#### Development
-`npm run dev`
+`npm start`
 
-#### Release
-`npm run start`
+### Run tests in watch mode
 
-#### Integration tests
-`npm run integration-tests`
+Re-reruns all available tests with every file update. It is recommended to use watch mode when developing tests. Find out more at [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
 
-#### End to End tests
-`npm run e2e-tests`
+### Run tests in a Docker container
 
-### Run applications with NPM or Docker
+[Docker](https://www.docker.com/) must be installed. Use this approach if you want to run the tests in a container, without installing Node.js. It is common to use this approach in a CI/CD pipeline.
 
-Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs).
+`docker build -t your-user-name/integration-tests:latest -f docker/Dockerfile.ci .`
+`docker run --name integration-tests -t your-user-name/integration-tests:latest`
 
-## Technical highlights
+## Core concepts
 
 As a portfolio piece, this project aims to showcase expertise in several areas, including:
 
