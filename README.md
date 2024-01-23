@@ -21,7 +21,7 @@ Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-app
 # Table of contents
 
 * [Quickstart](https://github.com/escobard/integration-tests?tab=readme-ov-file#quickstart)
-* [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#technical-highlights)
+* [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#core-concepts
 * [How to contribute](https://github.com/escobard/integration-tests?tab=readme-ov-file#how-to-contribute)
 * [Tools and frameworks](https://github.com/escobard/integration-tests?tab=readme-ov-file#tools-and-frameworks)
 * [License](https://github.com/escobard/integration-tests?tab=readme-ov-file#license)
@@ -63,11 +63,11 @@ Re-reruns tests when a test file is updated. It is recommended to use watch mode
 
 ## Core concepts
 
-1. Serve as a starting point for complex integration test use cases
-2. Provide simple, modular code structures & design patterns
-3. Leverage data driven tests with Jest
-4. Follow the automation test pyramid principles
-5. Run tests in a Docker container for CI/CD
+1. [Serve as a starting point for complex integration test use cases](https://github.com/escobard/integration-tests?tab=readme-ov-file#serve-as-a-starting-point-for-complex-integration-test-use-cases)
+2. [Provide simple, modular code structures & design patterns](https://github.com/escobard/integration-tests?tab=readme-ov-file#provide-simple-modular-code-structures--design-patterns)
+3. [Leverage data driven tests with Jest](https://github.com/escobard/integration-tests?tab=readme-ov-file#leverage-data-driven-tests-with-jest)
+4. [Follow the automation test pyramid principles](https://github.com/escobard/integration-tests?tab=readme-ov-file#follow-the-automation-test-pyramid-principles)
+5. [Run tests in a Docker container for CI/CD](https://github.com/escobard/integration-tests?tab=readme-ov-file#run-tests-in-a-docker-container-for-cicd)
 
 ### Serve as a starting point for complex integration test use cases
 
