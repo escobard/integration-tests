@@ -20,11 +20,11 @@ Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-app
 
 # Table of contents
 
-* [Quickstart](https://github.com/escobard/cloud-apps?tab=readme-ov-file#quickstart)
-* [Core concepts](https://github.com/escobard/cloud-apps?tab=readme-ov-file#technical-highlights)
-* [How to contribute](https://github.com/escobard/cloud-apps?tab=readme-ov-file#how-to-contribute)
-* [Tools and frameworks](https://github.com/escobard/cloud-apps?tab=readme-ov-file#tools-and-frameworks)
-* [License](https://github.com/escobard/cloud-apps?tab=readme-ov-file#license)
+* [Quickstart](https://github.com/escobard/integration-tests?tab=readme-ov-file#quickstart)
+* [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#technical-highlights)
+* [How to contribute](https://github.com/escobard/integration-tests?tab=readme-ov-file#how-to-contribute)
+* [Tools and frameworks](https://github.com/escobard/integration-tests?tab=readme-ov-file#tools-and-frameworks)
+* [License](https://github.com/escobard/integration-tests?tab=readme-ov-file#license)
 
 ## Quickstart
 
@@ -50,7 +50,7 @@ Tests will run in the order outlined in the [/tests/testInOrder.test.js](/tests/
 
 `npm start`
 
-### Run tests in watch mode - recommended for development
+### Run tests in watch mode 
 
 Re-reruns tests when a test file is updated. It is recommended to use watch mode when developing tests. Find out more at [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
 
@@ -68,6 +68,22 @@ Re-reruns tests when a test file is updated. It is recommended to use watch mode
 3. Leverage data driven tests with Jest
 4. Follow the automation test pyramid principles
 5. Run tests in a Docker container for CI/CD
+
+### Serve as a starting point for complex integration test use cases
+
+When APIs expand past single CRUD operations, developers tend to seek a way to validate that old endpoints continue to work as expected, while new endpoints are developed. As new endpoints are developed, it becomes more challenging to validate old endpoints. Integration tests are a great way to validate that an API continues to work as expected, as it grows in complexity.
+
+Leveraging [Jest](https://jestjs.io/) and [Supertest](https://www.npmjs.com/package/supertest), this repository provides a starting point for complex integration test use cases. The tests are designed to be modular, allowing developers to easily add new tests and endpoints as APIs grow in complexity.
+
+### Provide simple, modular code structures & design patterns
+
+Leveraging Jest's setup and teardown functionality, global imports minimize inline imports, allowing test syntax complexity to remain low. API endpoints can (optionally) be configured globally before setup and teardown, facilitating readability and re-usability as the number of tests grow. By using Jest's run-in-band functionality, changing the order in which tests are run can be easily changed by swapping the order of the tests imported in [/tests/testInOrder.test.js](/tests/testInOrder.test.js).
+
+### Leverage data driven tests with Jest
+
+### Follow the automation test pyramid principles
+
+### Run tests in a Docker container for CI/CD
 
 ## Tools and frameworks
 
