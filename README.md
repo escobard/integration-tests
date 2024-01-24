@@ -12,16 +12,14 @@ Create and run a new test in a few steps:
 
 The diagram below outlines a network created with Docker Compose, showcasing the connections between the tests, an API and a Database:
 
-TODO - add docker network diagram
+![System overview](https://github.com/escobard/cloud-apps/blob/master/docs/diagrams/integration_tests.png?raw=true)
 
 Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), you will find an example of the integration tests running in combination with a GraphQL API and PostgreSQL Database.
-
-![System overview](docs/diagrams/system_overview.png)
 
 # Table of contents
 
 * [Quickstart](https://github.com/escobard/integration-tests?tab=readme-ov-file#quickstart)
-* [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#core-concepts
+* [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#core-concepts)
 * [How to contribute](https://github.com/escobard/integration-tests?tab=readme-ov-file#how-to-contribute)
 * [Tools and frameworks](https://github.com/escobard/integration-tests?tab=readme-ov-file#tools-and-frameworks)
 * [License](https://github.com/escobard/integration-tests?tab=readme-ov-file#license)
@@ -31,8 +29,6 @@ Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-app
 ### Run test application with NPM
 
 [Node.js v20.9.0+](https://nodejs.org/en/) must be installed.
-
-Tests for any RESTFul API can be built following the steps provided in [the summary of this README.](#graphql-integration-tests).
 
 The following npm scripts are available:
 
@@ -77,17 +73,27 @@ Leveraging [Jest](https://jestjs.io/) and [Supertest](https://www.npmjs.com/pack
 
 ### Provide simple, modular code structures & design patterns
 
-Leveraging Jest's setup and teardown functionality, global imports minimize inline imports, allowing test syntax complexity to remain low. API endpoints can (optionally) be configured globally before setup and teardown, facilitating readability and re-usability as the number of tests grow. By using Jest's run-in-band functionality, changing the order in which tests are run can be easily changed by swapping the order of the tests imported in [/tests/testInOrder.test.js](/tests/testInOrder.test.js).
+Using Jest's setup and teardown functionality, global imports minimize inline imports, allowing test syntax complexity to remain low. API endpoints can (optionally) be configured globally before setup and teardown, facilitating readability and re-usability as the number of tests grow. By using Jest's run-in-band functionality, changing the order in which tests are run can be easily changed by swapping the order of the tests imported in [/tests/testInOrder.test.js](/tests/testInOrder.test.js).
 
 ### Leverage data driven tests with Jest
 
+Leveraging [Jest's data driven testing](https://jestjs.io/docs/api#describeeachtablename-fn-timeout), tests can be written once and run multiple times with different data. Due to the data-heavy nature of GraphQL, data driven tests make it easier to validate API responses with minimal code. This is useful when testing CRUD operations, as the same test can be run with different data, without having to write multiple tests.
+
 ### Follow the automation test pyramid principles
+
+This project encourages Mike Cohn's [automation test pyramid](https://martinfowler.com/articles/practical-test-pyramid/testPyramid.png) principles to automated testing. 
+
+![Mike Cohn's test pyramid](https://raw.githubusercontent.com/escobard/cloud-apps/master/docs/images/test_pyramid.png)
+
+The test pyramid paradigm encourages developers to build more unit tests (since they are small and fast), than service (or integration) tests, and more service tests than UI (or e2e) tests (which are slow and heavy).
 
 ### Run tests in a Docker container for CI/CD
 
+With Docker, the test application can be run in a container, without having to install Node.js. This is useful when running tests in a CI/CD pipeline, as it allows the user to run tests without having to install Node.js or any of the application dependencies. The test application can be easily built and run with Docker, without the need of any additional setup in your CI/CD pipeline, as long as Docker is supported. 
+
 ## Tools and frameworks
 
-[Node.js](https://nodejs.org/en)
+[Node.js](https://nodejs.org/en)  
 [Jest](https://jestjs.io/)  
 [Supertest](https://www.npmjs.com/package/supertest)    
 [Docker](https://www.docker.com/)
