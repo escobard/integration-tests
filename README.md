@@ -1,25 +1,38 @@
 # integration-tests &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps#pull-requests)
 
-An integration test boilerplate, designed as a starting point for your tests, built with JavaScript ES6+, Jest and Supertest.
+An integration test boilerplate, designed as a starting point for your API tests, built with JavaScript ES6+, Jest and Supertest.
 
 Create and run a new test in a few steps:
 
 #### 1. Create test
 
-#### 2. Apply the URL of the API you want to test
+[Create a new test file](https://jestjs.io/docs/getting-started) in the [/tests](/tests) folder. The file name must end with `.test.js`:
 
-#### 3. Run the tests
+![Create test](docs/images/create_test.png)
 
-The diagram below outlines a network created with Docker Compose, showcasing the connections between the tests, an API and a Database:
+#### 2. Apply the API endpoint you want to test
 
-![System overview](https://github.com/escobard/cloud-apps/blob/master/docs/diagrams/integration_tests.png?raw=true)
+Add [the API endpoint](https://www.npmjs.com/package/supertest) you want to test in your test file:
 
-Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), you will find an example of the integration tests running in combination with a GraphQL API and PostgreSQL Database.
+![Add endpoint](docs/images/add_endpoint.png)
+
+#### 3. Add expect statements to validate API response
+
+Add [expect statements](https://jestjs.io/docs/expect) to validate the API response:
+
+![Add expect](docs/images/add_expects.png)
+
+#### 4. Run the tests
+
+Run your test with `npm run test nameOfTestFile` or `npm run test` to run all tests:
+
+![Run tests](docs/images/run_tests.png)
 
 # Table of contents
 
 * [Quickstart](https://github.com/escobard/integration-tests?tab=readme-ov-file#quickstart)
 * [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#core-concepts)
+* [System overview](https://github.com/escobard/integration-tests?tab=readme-ov-file#system-overview)
 * [How to contribute](https://github.com/escobard/integration-tests?tab=readme-ov-file#how-to-contribute)
 * [Tools and frameworks](https://github.com/escobard/integration-tests?tab=readme-ov-file#tools-and-frameworks)
 * [License](https://github.com/escobard/integration-tests?tab=readme-ov-file#license)
@@ -90,6 +103,14 @@ The test pyramid paradigm encourages developers to build more unit tests (since 
 ### Run tests in a Docker container for CI/CD
 
 With Docker, the test application can be run in a container, without having to install Node.js. This is useful when running tests in a CI/CD pipeline, as it allows the user to run tests without having to install Node.js or any of the application dependencies. The test application can be easily built and run with Docker, without the need of any additional setup in your CI/CD pipeline, as long as Docker is supported. 
+
+## System overview
+
+This project is meant to run as part of a larger system, which requires integration tests to validate the system's functionality as new features are developed. Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), you will find an example of the integration tests running in combination with a GraphQL API and PostgreSQL Database.
+
+The diagram below outlines a network created with Docker Compose, showcasing connections between the tests, an API and a Database:
+
+![System overview](https://github.com/escobard/cloud-apps/blob/master/docs/diagrams/integration_tests.png?raw=true)
 
 ## Tools and frameworks
 
