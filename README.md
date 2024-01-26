@@ -32,7 +32,6 @@ Run your test with `npm run test nameOfTestFile` or `npm run test` to run all te
 
 * [Quickstart](https://github.com/escobard/integration-tests?tab=readme-ov-file#quickstart)
 * [Core concepts](https://github.com/escobard/integration-tests?tab=readme-ov-file#core-concepts)
-* [System overview](https://github.com/escobard/integration-tests?tab=readme-ov-file#system-overview)
 * [How to contribute](https://github.com/escobard/integration-tests?tab=readme-ov-file#how-to-contribute)
 * [Tools and frameworks](https://github.com/escobard/integration-tests?tab=readme-ov-file#tools-and-frameworks)
 * [License](https://github.com/escobard/integration-tests?tab=readme-ov-file#license)
@@ -53,15 +52,15 @@ The following npm scripts are available:
 
 `npm run test`
 
-### Run all available tests in order
+### Run tests in order
 
-Tests will run in the order outlined in the [/tests/testInOrder.test.js](/tests/testInOrder.test.js) file.
+Jest will run tests in the order outlined within [/tests/testInOrder.test.js](/tests/testInOrder.test.js).
 
 `npm start`
 
 ### Run tests in watch mode 
 
-Re-reruns tests when a test file is updated. It is recommended to use watch mode when developing tests. Find out more at [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
+Re-reruns tests when a test file is updated. It is recommended to use watch mode when developing tests. Find out more by reading through [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
 
 ### Run tests in a Docker container
 
@@ -71,18 +70,26 @@ Re-reruns tests when a test file is updated. It is recommended to use watch mode
 `docker run --name integration-tests -t your-user-name/integration-tests:latest`
 
 ## Core concepts
-
-1. [Serve as a starting point for complex integration test use cases](https://github.com/escobard/integration-tests?tab=readme-ov-file#serve-as-a-starting-point-for-complex-integration-test-use-cases)
-2. [Provide simple, modular code structures & design patterns](https://github.com/escobard/integration-tests?tab=readme-ov-file#provide-simple-modular-code-structures--design-patterns)
-3. [Leverage data driven tests with Jest](https://github.com/escobard/integration-tests?tab=readme-ov-file#leverage-data-driven-tests-with-jest)
-4. [Follow the automation test pyramid principles](https://github.com/escobard/integration-tests?tab=readme-ov-file#follow-the-automation-test-pyramid-principles)
+1. [System overview](https://github.com/escobard/integration-tests?tab=readme-ov-file#system-overview)
+2. [Serve as a starting point for complex integration test use cases](https://github.com/escobard/integration-tests?tab=readme-ov-file#serve-as-a-starting-point-for-complex-integration-test-use-cases)
+3. [Provide simple, modular code structures & design patterns](https://github.com/escobard/integration-tests?tab=readme-ov-file#provide-simple-modular-code-structures--design-patterns)
+4. [Leverage data driven tests with Jest](https://github.com/escobard/integration-tests?tab=readme-ov-file#leverage-data-driven-tests-with-jest)
 5. [Run tests in a Docker container for CI/CD](https://github.com/escobard/integration-tests?tab=readme-ov-file#run-tests-in-a-docker-container-for-cicd)
+
+
+### System overview
+
+This application is meant to run as part of a larger system, which requires integration tests to validate the system's functionality as new features are developed. Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), you will find an example of the integration tests running in combination with a GraphQL API and PostgreSQL Database.
+
+The diagram below outlines a network created with Docker Compose, showcasing connections between the tests, an API and a Database:
+
+![System overview](https://github.com/escobard/cloud-apps/blob/master/docs/diagrams/integration_tests.png?raw=true)
 
 ### Serve as a starting point for complex integration test use cases
 
-When APIs expand past single CRUD operations, developers tend to seek a way to validate that old endpoints continue to work as expected, while new endpoints are developed. As new endpoints are developed, it becomes more challenging to validate old endpoints. Integration tests are a great way to validate that an API continues to work as expected, as it grows in complexity.
+When APIs expand past single CRUD operations, developers tend to seek ways to ensure that old endpoints continue to work as expected, while new endpoints are developed. As new endpoints are developed, it becomes more challenging to validate old endpoints. Integration tests are a great way to validate that an API continues to work as expected, as it grows in complexity.
 
-Leveraging [Jest](https://jestjs.io/) and [Supertest](https://www.npmjs.com/package/supertest), this repository provides a starting point for complex integration test use cases. The tests are designed to be modular, allowing developers to easily add new tests and endpoints as APIs grow in complexity.
+Leveraging [Jest](https://jestjs.io/) and [Supertest](https://www.npmjs.com/package/supertest), this repository provides a starting point for complex integration test use cases. The tests are designed to be modular, allowing developers to easily add new tests and endpoints as APIs grow.
 
 ### Provide simple, modular code structures & design patterns
 
@@ -90,27 +97,11 @@ Using Jest's setup and teardown functionality, global imports minimize inline im
 
 ### Leverage data driven tests with Jest
 
-Leveraging [Jest's data driven testing](https://jestjs.io/docs/api#describeeachtablename-fn-timeout), tests can be written once and run multiple times with different data. Due to the data-heavy nature of GraphQL, data driven tests make it easier to validate API responses with minimal code. This is useful when testing CRUD operations, as the same test can be run with different data, without having to write multiple tests.
-
-### Follow the automation test pyramid principles
-
-This project encourages Mike Cohn's [automation test pyramid](https://martinfowler.com/articles/practical-test-pyramid/testPyramid.png) principles to automated testing. 
-
-![Mike Cohn's test pyramid](https://raw.githubusercontent.com/escobard/cloud-apps/master/docs/images/test_pyramid.png)
-
-The test pyramid paradigm encourages developers to build more unit tests (since they are small and fast), than service (or integration) tests, and more service tests than UI (or e2e) tests (which are slow and heavy).
+Leveraging [Jest's data driven testing](https://jestjs.io/docs/api#describeeachtablename-fn-timeout), tests can be written once and run multiple times with different data. Due to the data-heavy nature of GraphQL, data driven tests make it easier to validate API responses with minimal code. This is useful when testing CRUD operations with dynamic responses, as the same test can be run with different data, without having to write multiple tests.
 
 ### Run tests in a Docker container for CI/CD
 
-With Docker, the test application can be run in a container, without having to install Node.js. This is useful when running tests in a CI/CD pipeline, as it allows the user to run tests without having to install Node.js or any of the application dependencies. The test application can be easily built and run with Docker, without the need of any additional setup in your CI/CD pipeline, as long as Docker is supported. 
-
-## System overview
-
-This project is meant to run as part of a larger system, which requires integration tests to validate the system's functionality as new features are developed. Within [the aws-cloud-apps repository](https://github.com/escobard/aws-cloud-apps), you will find an example of the integration tests running in combination with a GraphQL API and PostgreSQL Database.
-
-The diagram below outlines a network created with Docker Compose, showcasing connections between the tests, an API and a Database:
-
-![System overview](https://github.com/escobard/cloud-apps/blob/master/docs/diagrams/integration_tests.png?raw=true)
+With Docker, the test application can be run in a container, without having to install Node.js. This is useful when running tests in a CI/CD pipeline, as it allows the user to run tests without having to install Node.js or any of the application dependencies. The test application can be easily built and run with Docker, without the need of any additional setup in your CI/CD pipeline, as long as Docker is supported.
 
 ## Tools and frameworks
 
